@@ -75,9 +75,22 @@ endif()
 # Depending on the platform, pass in the required defines.
 if (UNIX)
 
+	set(OSX_SNOW_LEOPARD FALSE)
+	if (APPLE)
+		if (OSX_TARGET_MAJOR EQUAL 10)
+			if (OSX_TARGET_MINOR LESS 6)
+				set(OSX_SNOW_LEOPARD TRUE)
+			endif()
+		endif()
+	endif()
+
 	# warnings as errors:
 	# we have a problem with people checking in code with warnings.
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror -Wno-unused-local-typedef")
+	if (OSX_SNOW_LEOPARD EQUAL FALSE)
+		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror -Wno-unused-local-typedef")
+	else()
+		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror")
+	endif()
 
 	if (NOT APPLE)
 		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
