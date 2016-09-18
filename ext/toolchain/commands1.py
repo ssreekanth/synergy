@@ -479,9 +479,11 @@ class InternalCommands:
 			qmake_cmd_string += " -spec macx-g++"
 			
 			(major, minor) = self.getMacVersion()
-			if major == 10 and minor <= 4:
+			if major == 10 and minor <= 5:
 				# 10.4: universal (intel and power pc)
 				qmake_cmd_string += ' CONFIG+="ppc i386"'
+			# elif major == 10 and minor <= 6:
+			# 	qmake_cmd_string += ' CONFIG+="x86"'
 			
 			libs = (
 				"-framework ApplicationServices "

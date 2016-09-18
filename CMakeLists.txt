@@ -190,9 +190,13 @@ if (UNIX)
 			# <= 10.5: 32-bit Intel and PowerPC
 			set(CMAKE_OSX_ARCHITECTURES "ppc;i386"
 				CACHE STRING "" FORCE)
+		elseif (OSX_TARGET_MINOR LESS 7)
+			# == 10.6: Intel only
+			set(CMAKE_OSX_ARCHITECTURES "i386;x86_64"
+				CACHE STRING "" FORCE)
 		else()
-			# >= 10.6: Intel only
-			set(CMAKE_OSX_ARCHITECTURES "i386"
+			# >= 10.7: Intel only
+			set(CMAKE_OSX_ARCHITECTURES "x86_64"
 				CACHE STRING "" FORCE)
 		endif()
 		
