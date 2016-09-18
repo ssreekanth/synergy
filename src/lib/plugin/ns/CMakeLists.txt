@@ -30,7 +30,11 @@ if (WIN32)
 endif()
 
 if (APPLE)
-	set(OPENSSL_PLAT_DIR openssl-osx)
+    if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+        set(OPENSSL_PLAT_DIR openssl-osx64)
+    else()
+        set(OPENSSL_PLAT_DIR openssl-osx)
+    endif()
 	set(OPENSSL_INCLUDE ../../../../ext/${OPENSSL_PLAT_DIR}/include)
 endif()
 
@@ -52,8 +56,8 @@ endif()
 if (UNIX)
 	if (APPLE)
 		set(OPENSSL_LIBS
-		${CMAKE_SOURCE_DIR}/ext/${OPENSSL_PLAT_DIR}/libssl.a
-		${CMAKE_SOURCE_DIR}/ext/${OPENSSL_PLAT_DIR}/libcrypto.a
+			${CMAKE_SOURCE_DIR}/ext/${OPENSSL_PLAT_DIR}/libssl.a
+			${CMAKE_SOURCE_DIR}/ext/${OPENSSL_PLAT_DIR}/libcrypto.a
 		)
 	else()
 		set(OPENSSL_LIBS ssl crypto)
