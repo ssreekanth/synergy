@@ -24,11 +24,7 @@ if (WIN32)
 endif()
 
 if (APPLE)
-	if(CMAKE_SIZEOF_VOID_P EQUAL 8)
-		set(OPENSSL_PLAT_DIR openssl-osx64)
-	else()
-		set(OPENSSL_PLAT_DIR openssl-osx)
-	endif()
+	set(OPENSSL_PLAT_DIR openssl-osx64)
 	set(OPENSSL_INCLUDE ${CMAKE_SOURCE_DIR}/ext/${OPENSSL_PLAT_DIR}/include)
 endif()
 

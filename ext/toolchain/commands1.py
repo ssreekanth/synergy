@@ -762,7 +762,8 @@ class InternalCommands:
 
 			(qMajor, qMinor, qRev) = self.getQmakeVersion()
 			if qMajor <= 4:
-				frameworkRootDir = "/Library/Frameworks"
+				# frameworkRootDir = "/Library/Frameworks"
+				frameworkRootDir = "/usr/local/Frameworks"
 			else:
 				# TODO: auto-detect, qt can now be installed anywhere.
 				frameworkRootDir = "/Developer/Qt5.2.1/5.2.1/clang_64/lib"

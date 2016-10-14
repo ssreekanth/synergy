@@ -20,36 +20,24 @@ int convertKeyIDToNXKeyType(KeyID id)
 {
 	int type = -1;
 
-	switch (id) {
-	case kKeyAudioUp:
+	if (id == kKeyAudioUp) {
 		type = NX_KEYTYPE_SOUND_UP;
-		break;
-	case kKeyAudioDown:
+	} else if (id == kKeyAudioDown) {
 		type = NX_KEYTYPE_SOUND_DOWN;
-		break;
-	case kKeyBrightnessUp:
+	} else if (id ==  kKeyBrightnessUp) {
 		type = NX_KEYTYPE_BRIGHTNESS_UP;
-		break;
-	case kKeyBrightnessDown:
+	} else if (id == kKeyBrightnessDown) {
 		type = NX_KEYTYPE_BRIGHTNESS_DOWN;
-		break;
-	case kKeyAudioMute:
+	} else if (id == kKeyAudioMute) {
 		type = NX_KEYTYPE_MUTE;
-		break;
-	case kKeyEject:
+	} else if (id == kKeyEject) {
 		type = NX_KEYTYPE_EJECT;
-		break;
-	case kKeyAudioPlay:
+	} else if (id == kKeyAudioPlay) {
 		type = NX_KEYTYPE_PLAY;
-		break;
-	case kKeyAudioNext:
+	} else if (id == kKeyAudioNext) {
 		type = NX_KEYTYPE_NEXT;
-		break;
-	case kKeyAudioPrev:
+	} else if (id == kKeyAudioPrev) {
 		type = NX_KEYTYPE_PREVIOUS;
-		break;
-	default:
-		break;
 	}
 	
 	return type;
