@@ -1844,11 +1844,11 @@ class InternalCommands:
 			if minor <= 4:
 				# 10.4: intel and power pc
 				arch = "Universal"
-			elif minor <= 6:
+			elif minor <= 5:
 				# 10.5: 32-bit intel
 				arch = "i386"
 			else:
-				# 10.7: 64-bit intel (gui only)
+				# >= 10.6: 64-bit intel
 				arch = "x86_64"
 		else:
 			raise Exception("Mac OS major version unknown: " +

@@ -174,7 +174,7 @@ if (UNIX)
 				CACHE STRING "" FORCE)
 		else()
 			# >= 10.6: Intel only
-			set(CMAKE_OSX_ARCHITECTURES "i386"
+			set(CMAKE_OSX_ARCHITECTURES "x86_64"
 				CACHE STRING "" FORCE)
 		endif()
 		
