@@ -230,8 +230,8 @@ SerialKey::parse(std::string plainSerial)
 			sscanf(parts.at(3).c_str(), "%d", &m_userLimit);
 			m_email = parts.at(4);
 			m_company = parts.at(5);
-			sscanf(parts.at(6).c_str(), "%lld", &m_warnTime);
-			sscanf(parts.at(7).c_str(), "%lld", &m_expireTime);
+			sscanf(parts.at(6).c_str(), "%jd", &m_warnTime);
+			sscanf(parts.at(7).c_str(), "%jd", &m_expireTime);
 			valid = true;
 		}
 		else if ((parts.size() == 9)
@@ -243,8 +243,8 @@ SerialKey::parse(std::string plainSerial)
 			sscanf(parts.at(4).c_str(), "%d", &m_userLimit);
 			m_email = parts.at(5);
 			m_company = parts.at(6);
-			sscanf(parts.at(7).c_str(), "%lld", &m_warnTime);
-			sscanf(parts.at(8).c_str(), "%lld", &m_expireTime);
+			sscanf(parts.at(7).c_str(), "%jd", &m_warnTime);
+			sscanf(parts.at(8).c_str(), "%jd", &m_expireTime);
 			valid = true;
 		}
 	}
