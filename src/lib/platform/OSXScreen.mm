@@ -339,13 +339,13 @@ OSXScreen::registerHotKey(KeyID key, KeyModifierMask mask)
 	}
 	
 	// choose hotkey id
-	UInt32 id;
+	UInt32 keyId;
 	if (!m_oldHotKeyIDs.empty()) {
-		id = m_oldHotKeyIDs.back();
+		keyId = m_oldHotKeyIDs.back();
 		m_oldHotKeyIDs.pop_back();
 	}
 	else {
-		id = m_hotKeys.size() + 1;
+		keyId = m_hotKeys.size() + 1;
 	}
 
 	// if this hot key has modifiers only then we'll handle it specially
@@ -357,30 +357,30 @@ OSXScreen::registerHotKey(KeyID key, KeyModifierMask mask)
 			okay = false;
 		}
 		else {
-			m_modifierHotKeys[mask] = id;
+			m_modifierHotKeys[mask] = keyId;
 			okay = true;
 		}
 	}
 	else {
-		EventHotKeyID hkid = { 'SNRG', (UInt32)id };
+		EventHotKeyID hkid = { 'SNRG', (UInt32)keyId };
 		OSStatus status = RegisterEventHotKey(macKey, macMask, hkid, 
 								GetApplicationEventTarget(), 0,
 								&ref);
 		okay = (status == noErr);
-		m_hotKeyToIDMap[HotKeyItem(macKey, macMask)] = id;
+		m_hotKeyToIDMap[HotKeyItem(macKey, macMask)] = keyId;
 	}
 
 	if (!okay) {
-		m_oldHotKeyIDs.push_back(id);
+		m_oldHotKeyIDs.push_back(keyId);
 		m_hotKeyToIDMap.erase(HotKeyItem(macKey, macMask));
 		LOG((CLOG_WARN "failed to register hotkey %s (id=%04x mask=%04x)", synergy::KeyMap::formatKey(key, mask).c_str(), key, mask));
 		return 0;
 	}
 
-	m_hotKeys.insert(std::make_pair(id, HotKeyItem(ref, macKey, macMask)));
+	m_hotKeys.insert(std::make_pair(keyId, HotKeyItem(ref, macKey, macMask)));
 	
-	LOG((CLOG_DEBUG "registered hotkey %s (id=%04x mask=%04x) as id=%d", synergy::KeyMap::formatKey(key, mask).c_str(), key, mask, id));
-	return id;
+	LOG((CLOG_DEBUG "registered hotkey %s (id=%04x mask=%04x) as id=%d", synergy::KeyMap::formatKey(key, mask).c_str(), key, mask, keyId));
+	return keyId;
 }
 
 void

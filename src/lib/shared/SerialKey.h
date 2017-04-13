@@ -59,8 +59,8 @@ private:
 	std::string			m_email;
 	std::string			m_company;
 	unsigned			m_userLimit;
-	unsigned long long	m_warnTime;
-	unsigned long long	m_expireTime;
+	time_t				m_warnTime;
+	time_t				m_expireTime;
 	Edition				m_edition;
 	bool				m_trial;
 };
